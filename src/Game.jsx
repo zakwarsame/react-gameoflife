@@ -14,7 +14,23 @@ const Game = () => {
   });
 
   console.log(grid);
-  return <div></div>;
+  return (
+    <div style={{display: 'grid', gridTemplateColumns:`repeat(${colCount}, 20px)`}}>
+      {grid.map((row, i) =>
+        row.map((col, j) => (
+          <div
+            key={`${i}-${j}`}
+            style={{
+              width: 20,
+              height: 20,
+              backgroundColor: grid[i][j] ? "black" : undefined,
+              border: "solid 1px black"
+            }}
+          ></div>
+        ))
+      )}
+    </div>
+  );
 };
 
 export default Game;
