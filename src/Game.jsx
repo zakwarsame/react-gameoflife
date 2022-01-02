@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Game.css";
+import produce from 'immer';
 
 const rowCount = 50;
 const colCount = 50;
@@ -20,6 +21,12 @@ const Game = () => {
         row.map((col, j) => (
           <div
             key={`${i}-${j}`}
+            onClick={()=> {
+              const newGrid = produce (grid, gridCopy => {
+                gridCopy[i][j]=1;
+              })
+              setGrid(newGrid)
+            }}
             style={{
               width: 20,
               height: 20,
