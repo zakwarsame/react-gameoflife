@@ -23,7 +23,7 @@ const Game = () => {
             key={`${i}-${j}`}
             onClick={()=> {
               const newGrid = produce (grid, gridCopy => {
-                gridCopy[i][j]=1;
+                gridCopy[i][j]= gridCopy[i][j] ? 0 : 1;
               })
               setGrid(newGrid)
             }}
