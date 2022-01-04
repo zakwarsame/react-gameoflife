@@ -16,6 +16,8 @@ const Game = () => {
 
   console.log(grid);
   return (
+    <>
+
     <div style={{display: 'grid', gridTemplateColumns:`repeat(${colCount}, 20px)`}}>
       {grid.map((row, i) =>
         row.map((col, j) => (
@@ -37,6 +39,8 @@ const Game = () => {
         ))
       )}
     </div>
+    <button>start</button>
+    </>
   );
 };
 
