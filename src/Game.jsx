@@ -14,7 +14,7 @@ const Game = () => {
     return row;
   });
 
-  console.log(grid);
+  const [running, setRunning] = useState(false)
   return (
     <>
 
@@ -39,7 +39,9 @@ const Game = () => {
         ))
       )}
     </div>
-    <button>start</button>
+    <button onClick={()=> {
+      setRunning(!running)
+    }} >{running ? 'stop' : 'start'}</button>
     </>
   );
 };
