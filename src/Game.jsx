@@ -16,13 +16,17 @@ const operations = [
   [-1, 0],
 ]
 
+const clearGrid = () => {
+  const row = [];
+  for (let i = 0; i < rowCount; i++) {
+    row.push(Array.from(Array(colCount), () => 0));
+  }
+  return row;
+}
+
 const Game = () => {
   const [grid, setGrid] = useState(() => {
-    const row = [];
-    for (let i = 0; i < rowCount; i++) {
-      row.push(Array.from(Array(colCount), () => 0));
-    }
-    return row;
+    return clearGrid()
   });
 
   const [running, setRunning] = useState(false);
@@ -59,7 +63,7 @@ const Game = () => {
     })
 
 
-    setTimeout(runSimulation, 1000)
+    setTimeout(runSimulation, 500)
   }, [])
 
   return (
@@ -88,7 +92,24 @@ const Game = () => {
     </div>
     <button onClick={()=> {
       setRunning(!running)
+      if(!running){
+        runningRef.current = true;
+        runSimulation();
+      }
     }} >{running ? 'stop' : 'start'}</button>
+
+
+<button onClick={ ()=> {
+    const row = [];
+    for (let i = 0; i < rowCount; i++) {
+      row.push(Array.from(Array(colCount), () => Math.random() > 0.5?1 : 0));
+    }
+      setGrid(row)
+    }}>random</button>
+
+    <button onClick={ ()=> {
+      setGrid(clearGrid())
+    }}>clear</button>
     </>
   );
 };
