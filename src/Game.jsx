@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import "./Game.css";
 import produce from 'immer';
 
@@ -14,7 +14,16 @@ const Game = () => {
     return row;
   });
 
-  const [running, setRunning] = useState(false)
+  const [running, setRunning] = useState(false);
+
+  const runningRef = useRef(running);
+  runningRef.current = running
+
+  const runSimulation = useCallback(() => {
+    if(!runningRef.current) return
+    setTimeout(runSimulation, 1000)
+  }, [])
+
   return (
     <>
 
